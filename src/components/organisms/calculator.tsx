@@ -3,6 +3,7 @@ import healthOverview from "./healthOverview";
 import { SERVINGS_PER_PERSON } from "../../assets/datasets";
 import { number } from "zod";
 import axios from "axios";
+import { exerciseApi } from "./apis";
 
 export default function BasicCalculator() {
   const [gender, setGender] = useState("");
@@ -23,9 +24,7 @@ export default function BasicCalculator() {
   const [cuisineType, setCuisineType] = useState("");
   const [minCals, setMinCals] = useState("");
 
-  const handleSubmit = async (
-    event: React.MouseEvent<HTMLElement>
-  ): Promise<void> => {
+  const handleSubmit = (event: React.MouseEvent<HTMLElement>): void => {
     event.preventDefault();
 
     if (age === "" || gender === "") {
@@ -116,42 +115,29 @@ export default function BasicCalculator() {
       document.getElementById("health-overview")?.remove();
 
       if (exerciseSug === "Yes") {
-        let muscle = muscleUpper;
-        const options = {
-          method: "GET",
-          url: "https://api.api-ninjas.com/v1/exercises?muscle=" + muscle,
-          headers: {
-            "X-Api-Key": "KWsgW5bBpDXHx/lHOTyf+w==qP6seSv0RudxeHy8",
-          },
-        };
         try {
-          const response = await axios.request(options);
-          for (let i = 0; i < response.data.length; i++) {
-            // workout.append(response.data[0][i]);
-            console.log(response.data);
-          }
-        } catch (error) {
-          console.error(error);
+          void exerciseApi(muscleUpper);
+        } catch {
+          console.error(404);
         }
-        // element.appendChild(workout);
       }
 
-      if (mealSug === "Yes") {
-        var specifiedSearch = "";
-        const foodOptions = {
-          method: "GET",
-          url: "https://api.spoonacular.com/recipes/complexSearch",
-          headers: {
-            "X-Api-Key": "d1823bda9b7848ec8a70344ea908a0bf",
-          },
-        };
-        try {
-          const response = await axios.request(foodOptions);
-          console.log(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      }
+      // if (mealSug === "Yes") {
+      //   let specifiedSearch = "";
+      //   const foodOptions = {
+      //     method: "GET",
+      //     url: "https://api.spoonacular.com/recipes/complexSearch",
+      //     headers: {
+      //       "X-Api-Key": "d1823bda9b7848ec8a70344ea908a0bf",
+      //     },
+      //   };
+      //   try {
+      //     const response = await axios.request(foodOptions);
+      //     console.log(response.data);
+      //   } catch (error) {
+      //     console.error(error);
+      //   }
+      // }
 
       document.body.appendChild(element);
     }
