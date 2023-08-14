@@ -285,6 +285,21 @@ input[type="number"] {
   padding: 90px;
 }
 
+.foodCatImg {
+  width: 300px;
+}
+
+.scary-image {
+  width: 200px;
+  padding: 50px;
+}
+
+.scary-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (max-width: 500px) {
   .special-paragraph {
     font-size: 1rem;
@@ -294,6 +309,9 @@ input[type="number"] {
   }
   .big-title {
     font-size: 0.9rem;
+  }
+  .foodCatImg {
+    width: 100px;
   }
 }
 
@@ -315,6 +333,9 @@ input[type="number"] {
   #uploaded-image {
     width: 100px;
     height: 100px;
+  }
+  scary-image {
+    width: 300px;
   }
 }
 

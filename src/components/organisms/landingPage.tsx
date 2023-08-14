@@ -68,6 +68,7 @@ export default function LandingPage() {
               in the diets of human beings, since they provide us with many
               essential nutrients.
             </p>
+            <img className="foodCatImg" src="/fandv.jpg"></img>
           </div>
         </div>
 
@@ -89,6 +90,7 @@ export default function LandingPage() {
               benefits for children. But it is not essential for adults, for a
               host of reasons.`&quoi;`
             </p>
+            <img className="foodCatImg" src="dairy.jpg"></img>
           </div>
         </div>
 
@@ -110,6 +112,7 @@ export default function LandingPage() {
               food industry, economies, and cultures around the world. Protein
               is a primary
             </p>
+            <img className="foodCatImg" src="meat.jpg"></img>
           </div>
         </div>
       </div>
@@ -125,6 +128,7 @@ export default function LandingPage() {
               types of commercial grain crops are cereals and legumes. Some
               examples of grain products include breads, rice and oats.
             </p>
+            <img className="foodCatImg" src="grain.jpg"></img>
           </div>
         </div>
 
@@ -139,6 +143,7 @@ export default function LandingPage() {
               vegetable juice and even soup, and is typically recommended in
               plentiful amounts.
             </p>
+            <img className="foodCatImg" src="water.jpg"></img>
           </div>
         </div>
       </div>
@@ -194,6 +199,10 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      <div className="scary-image-container">
+        <div>JART Team Picture</div>
+        <img className="scary-image" src="/JART.jpg"></img>
+      </div>
     </div>
   );
 }
