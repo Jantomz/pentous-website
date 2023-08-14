@@ -118,6 +118,18 @@ const Identification = (): JSX.Element => {
           </div>
         </div>
       </div>
+      <p className="white-text">
+        What is JART?<br></br>
+        Trained using tensorflow keras, JART is a state of the art machine
+        learning buddy of ours. Using a total of 3 Conv2D layers and 2 Dense
+        layers, this model was trained in very little time. With activation
+        functions of relu and softmax, our categorical machine learning friend
+        JART came about! Using a collected dataset of 3000+ images, categorized
+        into the 4 food categories, JART is now able to figure out what food
+        category you are showing it! This dataset was compiled by Pentous
+        creators! JART will let you know what food category you are most likely
+        looking at!
+      </p>
     </section>
   );
 };
