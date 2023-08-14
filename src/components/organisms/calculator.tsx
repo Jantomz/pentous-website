@@ -79,6 +79,7 @@ export default function BasicCalculator() {
     } else {
       const index = healthOverview(age, gender);
       const element = document.createElement("p");
+      element.setAttribute("class", "document-card");
       const ageElem = document.createElement("h3");
       const genderElem = document.createElement("h3");
       const weightElem = document.createElement("h3");
@@ -88,14 +89,89 @@ export default function BasicCalculator() {
       const grainElem = document.createElement("p");
       const dairyElem = document.createElement("p");
       const proteinElem = document.createElement("p");
+      const waterElem = document.createElement("p");
+      const meatSugElem = document.createElement("p");
+      const grainSugElem = document.createElement("p");
+      const fandvSugElem = document.createElement("p");
+      const dairySugElem = document.createElement("p");
 
-      const workout = document.createElement("p");
+      let meatSuggestion;
+      let grainSuggestion;
+      let fandvSuggestion;
+      let dairySuggestion;
+
+      const userMeatPortion = +meatComposition / 100;
+      const userGrainPortion = +grainComposition / 100;
+      const userFandvPortion = +fandvComposition / 100;
+      const userDairyPortion = +dairyComposition / 100;
+
+      const totalStandardPortion =
+        +SERVINGS_PER_PERSON[index]?.protein +
+        +SERVINGS_PER_PERSON[index]?.grain +
+        +SERVINGS_PER_PERSON[index]?.vegetablesAndFruits +
+        +SERVINGS_PER_PERSON[index]?.dairy;
+
+      if (
+        userMeatPortion <
+        +SERVINGS_PER_PERSON[index]?.protein / totalStandardPortion
+      ) {
+        meatSuggestion = "We suggest you eat more protein";
+      } else {
+        meatSuggestion =
+          "You're eating more than enough protein in comparison to the other categories";
+      }
+
+      if (
+        userGrainPortion <
+        +SERVINGS_PER_PERSON[index]?.grain / totalStandardPortion
+      ) {
+        grainSuggestion = "We suggest you eat more grain";
+      } else {
+        grainSuggestion =
+          "You're eating more than enough grain in comparison to the other categories";
+      }
+
+      if (
+        userFandvPortion <
+        +SERVINGS_PER_PERSON[index]?.vegetablesAndFruits / totalStandardPortion
+      ) {
+        fandvSuggestion = "We suggest you eat more fruits and vegetables";
+      } else {
+        fandvSuggestion =
+          "You're eating more than enough fruits and vegetables in comparison to the other categories";
+      }
+
+      if (
+        userDairyPortion <
+        +SERVINGS_PER_PERSON[index]?.dairy / totalStandardPortion
+      ) {
+        dairySuggestion = "We suggest you eat more dairy";
+      } else {
+        dairySuggestion =
+          "You're eating more than enough dairy in comparison to the other categories";
+      }
+      meatSugElem.textContent = meatSuggestion;
+      fandvSugElem.textContent = fandvSuggestion;
+      dairySugElem.textContent = dairySuggestion;
+      grainSugElem.textContent = grainSuggestion;
+
+      const totalSuggestions = document.createElement("div");
+      totalSuggestions.appendChild(meatSugElem);
+      totalSuggestions.appendChild(grainSugElem);
+      totalSuggestions.appendChild(fandvSugElem);
+      totalSuggestions.appendChild(dairySugElem);
+
+      const dailyWater = +weightlbs * (2 / 3);
 
       ageElem.textContent = "Age: " + age;
       genderElem.textContent = "Gender: " + gender;
       weightElem.textContent = "Weight (lbs): " + weightlbs;
       heightElem.textContent = "Height (cm): " + heightcm;
       recCategory.textContent = "Recommended Portions:";
+      waterElem.textContent =
+        "You should drink around " +
+        Math.floor(dailyWater) +
+        "ounces of water/day";
 
       fvElem.textContent =
         SERVINGS_PER_PERSON[index]?.vegetablesAndFruits +
@@ -107,6 +183,9 @@ export default function BasicCalculator() {
       proteinElem.textContent =
         SERVINGS_PER_PERSON[index]?.protein + " servings of Protein";
 
+      const suggestionsTitle = document.createElement("h3");
+      suggestionsTitle.textContent =
+        "Our suggestions for you on the five categories: ";
       element.appendChild(ageElem);
       element.appendChild(genderElem);
       element.appendChild(weightElem);
@@ -116,6 +195,9 @@ export default function BasicCalculator() {
       element.appendChild(grainElem);
       element.appendChild(dairyElem);
       element.appendChild(proteinElem);
+      element.appendChild(suggestionsTitle);
+      element.appendChild(totalSuggestions);
+      element.appendChild(waterElem);
       element.setAttribute("id", "health-overview");
       document.getElementById("health-overview")?.remove();
 
@@ -143,6 +225,12 @@ export default function BasicCalculator() {
         }
       }
 
+      const oldYourProfileTitle = document.getElementsByClassName("big-title");
+      oldYourProfileTitle[0]?.remove();
+      const yourProfileTitle = document.createElement("h2");
+      yourProfileTitle.setAttribute("class", "big-title");
+      yourProfileTitle.textContent = "Your Profile:";
+      document.body.appendChild(yourProfileTitle);
       document.body.appendChild(element);
     }
   };

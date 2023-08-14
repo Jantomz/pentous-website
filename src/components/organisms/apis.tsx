@@ -63,7 +63,6 @@ export async function exerciseApi(
     lowerBodTitle.textContent = "Lower Body";
     workout.setAttribute("class", "workouts");
     workoutLower.setAttribute("class", "workouts-lower");
-    document.body.appendChild(workoutTitle);
 
     for (let i = 0; i < upperLength; i++) {
       workout.append(response.data[i].name);
@@ -74,10 +73,16 @@ export async function exerciseApi(
       workoutLower.append(text.name);
       workoutLower.append("______");
     }
-    document.body.appendChild(upperBodTitle);
-    document.body.appendChild(workout);
-    document.body.appendChild(lowerBodTitle);
-    document.body.appendChild(workoutLower);
+
+    const divisionalSectionWorkouts = document.createElement("div");
+    divisionalSectionWorkouts.setAttribute("class", "document-card");
+    divisionalSectionWorkouts.appendChild(workoutTitle);
+    divisionalSectionWorkouts.appendChild(upperBodTitle);
+    divisionalSectionWorkouts.appendChild(workout);
+    divisionalSectionWorkouts.appendChild(lowerBodTitle);
+    divisionalSectionWorkouts.appendChild(workoutLower);
+
+    document.body.appendChild(divisionalSectionWorkouts);
   } catch (error) {
     console.error(error);
   }
@@ -108,6 +113,7 @@ export async function mealApi(specifiedSearch: string): Promise<void> {
     meal.setAttribute("class", "meal");
     divisionMeal.appendChild(meal);
     divisionMeal.appendChild(mealImg);
+    divisionMeal.setAttribute("class", "document-card");
     document.body.appendChild(divisionMeal);
   } catch (error) {
     console.error(error);
