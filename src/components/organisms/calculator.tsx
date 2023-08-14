@@ -1,11 +1,82 @@
 import { useState } from "react";
 import healthOverview from "./healthOverview";
-import { SERVINGS_PER_PERSON } from "../../assets/datasets";
-import { number } from "zod";
-import axios from "axios";
 import { exerciseApi } from "./apis";
-
 import { mealApi } from "./apis";
+
+export const SERVINGS_PER_PERSON = [
+  {
+    vegetablesAndFruits: 4,
+    grain: 3,
+    dairy: 2,
+    protein: 1,
+  },
+  {
+    vegetablesAndFruits: 5,
+    grain: 4,
+    dairy: 2,
+    protein: 1,
+  },
+  {
+    vegetablesAndFruits: 6,
+    grain: 6,
+    dairy: 3.5,
+    protein: 1.5,
+  },
+  {
+    vegetablesAndFruits: 7,
+    grain: 6,
+    dairy: 3.5,
+    protein: 2,
+  },
+  {
+    vegetablesAndFruits: 8,
+    grain: 7,
+    dairy: 3.5,
+    protein: 3,
+  },
+  {
+    vegetablesAndFruits: 7.5,
+    grain: 6.5,
+    dairy: 2,
+    protein: 2,
+  },
+  {
+    vegetablesAndFruits: 9,
+    grain: 8,
+    dairy: 2,
+    protein: 3,
+  },
+  {
+    vegetablesAndFruits: 7,
+    grain: 6,
+    dairy: 3,
+    protein: 1,
+  },
+  {
+    vegetablesAndFruits: 7,
+    grain: 7,
+    dairy: 3,
+    protein: 3,
+  },
+  {
+    vegetablesAndFruits: 7,
+    grain: 6.5,
+    dairy: 3,
+    protein: 2,
+  },
+  {
+    vegetablesAndFruits: 8,
+    grain: 7,
+    dairy: 2,
+    protein: 2.5,
+  },
+  {
+    vegetablesAndFruits: 7.5,
+    grain: 7,
+    dairy: 3.5,
+    protein: 3,
+  },
+];
 
 export default function BasicCalculator() {
   const [gender, setGender] = useState("");
@@ -25,6 +96,7 @@ export default function BasicCalculator() {
   const [difficulty, setDifficulty] = useState("");
   const [cuisineType, setCuisineType] = useState("");
   const [minCals, setMinCals] = useState("");
+  const index = healthOverview(age, gender);
 
   const handleSubmit = (event: React.MouseEvent<HTMLElement>): void => {
     event.preventDefault();
@@ -77,7 +149,6 @@ export default function BasicCalculator() {
     ) {
       alert("You haven't filled in all the meal parameters correctly");
     } else {
-      const index = healthOverview(age, gender);
       const element = document.createElement("p");
       element.setAttribute("class", "document-card");
       const ageElem = document.createElement("h3");
@@ -104,16 +175,16 @@ export default function BasicCalculator() {
       const userGrainPortion = +grainComposition / 100;
       const userFandvPortion = +fandvComposition / 100;
       const userDairyPortion = +dairyComposition / 100;
-
+      /* eslint-disable */
       const totalStandardPortion =
-        +SERVINGS_PER_PERSON[index]?.protein +
-        +SERVINGS_PER_PERSON[index]?.grain +
-        +SERVINGS_PER_PERSON[index]?.vegetablesAndFruits +
-        +SERVINGS_PER_PERSON[index]?.dairy;
+        SERVINGS_PER_PERSON[index]?.protein! +
+        SERVINGS_PER_PERSON[index]?.grain! +
+        SERVINGS_PER_PERSON[index]?.vegetablesAndFruits! +
+        SERVINGS_PER_PERSON[index]?.dairy!;
 
       if (
         userMeatPortion <
-        +SERVINGS_PER_PERSON[index]?.protein / totalStandardPortion
+        +SERVINGS_PER_PERSON[index]?.protein! / totalStandardPortion
       ) {
         meatSuggestion = "We suggest you eat more protein";
       } else {
@@ -123,7 +194,7 @@ export default function BasicCalculator() {
 
       if (
         userGrainPortion <
-        +SERVINGS_PER_PERSON[index]?.grain / totalStandardPortion
+        +SERVINGS_PER_PERSON[index]?.grain! / totalStandardPortion
       ) {
         grainSuggestion = "We suggest you eat more grain";
       } else {
@@ -133,7 +204,7 @@ export default function BasicCalculator() {
 
       if (
         userFandvPortion <
-        +SERVINGS_PER_PERSON[index]?.vegetablesAndFruits / totalStandardPortion
+        +SERVINGS_PER_PERSON[index]?.vegetablesAndFruits! / totalStandardPortion
       ) {
         fandvSuggestion = "We suggest you eat more fruits and vegetables";
       } else {
@@ -143,13 +214,14 @@ export default function BasicCalculator() {
 
       if (
         userDairyPortion <
-        +SERVINGS_PER_PERSON[index]?.dairy / totalStandardPortion
+        +SERVINGS_PER_PERSON[index]?.dairy! / totalStandardPortion
       ) {
         dairySuggestion = "We suggest you eat more dairy";
       } else {
         dairySuggestion =
           "You're eating more than enough dairy in comparison to the other categories";
       }
+      /* eslint-disable */
       meatSugElem.textContent = meatSuggestion;
       fandvSugElem.textContent = fandvSuggestion;
       dairySugElem.textContent = dairySuggestion;

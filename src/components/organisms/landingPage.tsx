@@ -64,12 +64,12 @@ export default function LandingPage() {
               butter, ghee, yogurt, cheese, cream and ice cream. The
               categorization of dairy as a food group with recommended daily
               servings has been criticized by, for example, the Harvard School
-              of Public Health who point out that "research has shown little
-              benefit, and considerable potential for harm, of such high dairy
-              intakes. Moderate consumption of milk or other dairy products—one
-              to two servings a day—is fine, and likely has some benefits for
-              children. But it’s not essential for adults, for a host of
-              reasons."
+              of Public Health who point out that `&quoi;`research has shown
+              little benefit, and considerable potential for harm, of such high
+              dairy intakes. Moderate consumption of milk or other dairy
+              products—one to two servings a day—is fine, and likely has some
+              benefits for children. But it is not essential for adults, for a
+              host of reasons.`&quoi;`
             </p>
           </div>
         </div>
@@ -139,7 +139,7 @@ export default function LandingPage() {
             <p>
               As a heavily passioned student who loves programming I wanted to
               use my skills to aid those who surround me. Eating healthy and
-              trying to live a healthy lifestyle is hard...I think that's
+              trying to live a healthy lifestyle is hard...I think that is
               something we can all agree upon. This inspired me and my friends
               to create Pentous to make once an incredibly hard journey easy.
               Together, using CSS, HTML for the front end design and javascript
@@ -158,9 +158,11 @@ export default function LandingPage() {
               className="portrait"
             />
             <p>
-              Hi! I'm a 16 year old student, studying computer science and all
-              it's amazing aspects! I enjoy learning front-end and am in the
-              process of learning more.
+              Hi! I am a 16 year old student, studying computer science and all
+              it is amazing aspects! I enjoy learning front-end and am in the
+              process of learning more. Making such a project really hurt my
+              head, especially with my atrocious organization skills. I hope
+              that I can make more organized projects in the future!
             </p>
           </div>
         </div>
