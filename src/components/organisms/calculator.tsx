@@ -72,7 +72,7 @@ export default function BasicCalculator() {
     ) {
       alert("You haven't filled in all the exercise parameters correctly");
     } else if (
-      (cuisineType == "DEFAULT" || minCals == "" || +minCals > 5000) &&
+      (cuisineType == "DEFAULT" || minCals == "" || +minCals > 1000) &&
       mealSug == "Yes"
     ) {
       alert("You haven't filled in all the meal parameters correctly");
@@ -119,27 +119,29 @@ export default function BasicCalculator() {
       element.setAttribute("id", "health-overview");
       document.getElementById("health-overview")?.remove();
 
-      if (exerciseSug === "Yes") {
-        try {
-          void exerciseApi(
-            muscleUpper,
-            muscleLower,
-            exerciseLength,
-            difficulty,
-            exerciseType
-          );
-        } catch {
-          console.error(404);
-        }
-      }
-
-      // if (mealSug === "Yes") {
+      // if (exerciseSug === "Yes") {
       //   try {
-      //     void mealApi(specifiedSearch);
+      //     void exerciseApi(
+      //       muscleUpper,
+      //       muscleLower,
+      //       exerciseLength,
+      //       difficulty,
+      //       exerciseType
+      //     );
       //   } catch {
       //     console.error(404);
       //   }
       // }
+
+      if (mealSug === "Yes") {
+        const specifiedSearch =
+          "cuisine=" + cuisineType + "&minCalories=" + minCals;
+        try {
+          void mealApi(specifiedSearch);
+        } catch {
+          console.error(404);
+        }
+      }
 
       document.body.appendChild(element);
     }
@@ -539,10 +541,10 @@ export default function BasicCalculator() {
                   name="minCals"
                   type="number"
                   min="1"
-                  max="5000"
+                  max="1000"
                   step="1"
                   className="input-area"
-                  placeholder="Minimum Calories (Max: 5000)"
+                  placeholder="Minimum Calories (Max: 1000)"
                   value={minCals}
                   onChange={(event) => {
                     setMinCals(event.target.value);
