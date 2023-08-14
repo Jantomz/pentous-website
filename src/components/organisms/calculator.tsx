@@ -121,7 +121,13 @@ export default function BasicCalculator() {
 
       if (exerciseSug === "Yes") {
         try {
-          void exerciseApi(muscleUpper, muscleLower, exerciseLength);
+          void exerciseApi(
+            muscleUpper,
+            muscleLower,
+            exerciseLength,
+            difficulty,
+            exerciseType
+          );
         } catch {
           console.error(404);
         }

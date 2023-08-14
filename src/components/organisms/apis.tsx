@@ -4,18 +4,32 @@ import { string } from "zod";
 export async function exerciseApi(
   muscleUpper: string,
   muscleLower: string,
-  exerciseLength: string
+  exerciseLength: string,
+  difficulty: string,
+  type: string
 ): Promise<void> {
   const options = {
     method: "GET",
-    url: "https://api.api-ninjas.com/v1/exercises?muscle=" + muscleUpper,
+    url:
+      "https://api.api-ninjas.com/v1/exercises?muscle=" +
+      muscleUpper +
+      "&difficulty=" +
+      difficulty +
+      "&type=" +
+      type,
     headers: {
       "X-Api-Key": "KWsgW5bBpDXHx/lHOTyf+w==qP6seSv0RudxeHy8",
     },
   };
   const optionsLower = {
     method: "GET",
-    url: "https://api.api-ninjas.com/v1/exercises?muscle=" + muscleLower,
+    url:
+      "https://api.api-ninjas.com/v1/exercises?muscle=" +
+      muscleLower +
+      "&difficulty=" +
+      difficulty +
+      "&type=" +
+      type,
     headers: {
       "X-Api-Key": "KWsgW5bBpDXHx/lHOTyf+w==qP6seSv0RudxeHy8",
     },
