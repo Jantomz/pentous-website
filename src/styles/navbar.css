@@ -1,0 +1,21 @@
+.navbar-btn {
+  border: none;
+  padding: 10px 40px;
+  background: none;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  cursor: pointer;
+  color: black;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar-btn:hover {
+  color: #c3c49e;
+}
+
+.navbar {
+  display: flex;
+  margin: 0;
+  padding-bottom: 20px;
+}
