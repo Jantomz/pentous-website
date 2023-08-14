@@ -22,6 +22,12 @@ body {
   margin-top: 50px;
 }
 
+.meal-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
 .container {
   position: relative;
   background-color: #9b9ece;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import healthOverview from "./healthOverview";
 import { SERVINGS_PER_PERSON } from "../../assets/datasets";
 import { number } from "zod";
+import axios from "axios";
 
 export default function BasicCalculator() {
   const [gender, setGender] = useState("");
@@ -17,9 +18,14 @@ export default function BasicCalculator() {
   const [exerciseType, setExerciseType] = useState("");
   const [exerciseLength, setExerciseLength] = useState("");
   const [muscleUpper, setMuscleUpper] = useState("");
+  const [muscleLower, setMuscleLower] = useState("");
   const [difficulty, setDifficulty] = useState("");
+  const [cuisineType, setCuisineType] = useState("");
+  const [minCals, setMinCals] = useState("");
 
-  const handleSubmit = (event: React.MouseEvent<HTMLElement>): void => {
+  const handleSubmit = async (
+    event: React.MouseEvent<HTMLElement>
+  ): Promise<void> => {
     event.preventDefault();
 
     if (age === "" || gender === "") {
@@ -30,9 +36,13 @@ export default function BasicCalculator() {
       +meatComposition > 100 ||
       +grainComposition > 100 ||
       +fandvComposition > 100 ||
-      +dairyComposition > 100
+      +dairyComposition > 100 ||
+      +meatComposition < 0 ||
+      +grainComposition < 0 ||
+      +fandvComposition < 0 ||
+      +dairyComposition < 0
     ) {
-      alert("One of your percents is larger than 100.");
+      alert("One of your percents is larger than 100 or not defined");
     } else if (
       +meatComposition +
         +grainComposition +
@@ -50,8 +60,22 @@ export default function BasicCalculator() {
       );
     } else if (weightlbs == "" || heightcm == "") {
       alert("You don't have weight or height");
+    } else if (
+      (exerciseType === "DEFAULT" ||
+        exerciseLength == "" ||
+        muscleUpper == "DEFAULT" ||
+        muscleLower == "DEFAULT" ||
+        difficulty == "DEFAULT" ||
+        +exerciseLength > 20) &&
+      exerciseSug == "Yes"
+    ) {
+      alert("You haven't filled in all the exercise parameters correctly");
+    } else if (
+      (cuisineType == "DEFAULT" || minCals == "" || +minCals > 5000) &&
+      mealSug == "Yes"
+    ) {
+      alert("You haven't filled in all the meal parameters correctly");
     } else {
-      console.log(weightlbs);
       const index = healthOverview(age, gender);
       const element = document.createElement("p");
       const ageElem = document.createElement("h3");
@@ -62,6 +86,8 @@ export default function BasicCalculator() {
       const grainElem = document.createElement("p");
       const dairyElem = document.createElement("p");
       const proteinElem = document.createElement("p");
+
+      const workout = document.createElement("p");
 
       ageElem.textContent = "Age: " + age;
       genderElem.textContent = "Gender: " + gender;
@@ -88,6 +114,44 @@ export default function BasicCalculator() {
       element.appendChild(proteinElem);
       element.setAttribute("id", "health-overview");
       document.getElementById("health-overview")?.remove();
+
+      if (exerciseSug === "Yes") {
+        let muscle = muscleUpper;
+        const options = {
+          method: "GET",
+          url: "https://api.api-ninjas.com/v1/exercises?muscle=" + muscle,
+          headers: {
+            "X-Api-Key": "KWsgW5bBpDXHx/lHOTyf+w==qP6seSv0RudxeHy8",
+          },
+        };
+        try {
+          const response = await axios.request(options);
+          for (let i = 0; i < response.data.length; i++) {
+            // workout.append(response.data[0][i]);
+            console.log(response.data);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+        // element.appendChild(workout);
+      }
+
+      if (mealSug === "Yes") {
+        var specifiedSearch = "";
+        const foodOptions = {
+          method: "GET",
+          url: "https://api.spoonacular.com/recipes/complexSearch",
+          headers: {
+            "X-Api-Key": "d1823bda9b7848ec8a70344ea908a0bf",
+          },
+        };
+        try {
+          const response = await axios.request(foodOptions);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
 
       document.body.appendChild(element);
     }
@@ -341,7 +405,7 @@ export default function BasicCalculator() {
                   max="20"
                   step="1"
                   className="input-area"
-                  placeholder="Number of Exercises"
+                  placeholder="Number of Exercises (Max: 20)"
                   value={exerciseLength}
                   onChange={(event) => {
                     setExerciseLength(event.target.value);
@@ -381,7 +445,7 @@ export default function BasicCalculator() {
                   className="input-area"
                   defaultValue={"DEFAULT"}
                   onChange={(event) => {
-                    setMuscleUpper(event.target.value);
+                    setMuscleLower(event.target.value);
                   }}
                 >
                   <option value="DEFAULT" hidden>
@@ -441,130 +505,61 @@ export default function BasicCalculator() {
       ) : null}
       {mealSug === "Yes" ? (
         <div>
-          <main className="exercise-container">
+          <main className="meal-container">
             <div className="image-container">
-              <img src="/running.jpg" alt="running"></img>
+              <img src="/meal.jpg" alt="meal"></img>
             </div>
             <div className="container">
               <h3>Meal</h3>
               <form>
                 <select
-                  id="exerciseType"
-                  name="exerciseType"
+                  id="cuisineType"
+                  name="cuisineType"
                   className="input-area"
                   defaultValue={"DEFAULT"}
                   onChange={(event) => {
-                    setExerciseType(event.target.value);
+                    setCuisineType(event.target.value);
                   }}
                 >
                   <option value="DEFAULT" hidden>
-                    Choose Exercise Type
+                    Choose Cuisine Type
                   </option>
-                  <option value="Cardio" className="select-option">
-                    Cardio
+                  <option value="Indian" className="select-option">
+                    Indian
                   </option>
-                  <option value="Plyometrics" className="select-option">
-                    Plyometrics
+                  <option value="Italian" className="select-option">
+                    Italian
                   </option>
-                  <option value="Strength" className="select-option">
-                    Strength
+                  <option value="Chinese" className="select-option">
+                    Chinese
                   </option>
-                  <option value="Stretching" className="select-option">
-                    Stretching
+                  <option value="American" className="select-option">
+                    American
+                  </option>
+                  <option value="Japanese" className="select-option">
+                    Japanese
+                  </option>
+                  <option value="Thai" className="select-option">
+                    Thai
+                  </option>
+                  <option value="Mexican" className="select-option">
+                    Mexican
                   </option>
                 </select>
                 <input
-                  id="exerciseLength"
-                  name="exerciseLength"
+                  id="minCals"
+                  name="minCals"
                   type="number"
-                  min="0"
-                  max="20"
+                  min="1"
+                  max="5000"
                   step="1"
                   className="input-area"
-                  placeholder="Number of Exercises"
-                  value={exerciseLength}
+                  placeholder="Minimum Calories (Max: 5000)"
+                  value={minCals}
                   onChange={(event) => {
-                    setExerciseLength(event.target.value);
+                    setMinCals(event.target.value);
                   }}
                 ></input>
-                <select
-                  id="muscleUpper"
-                  name="muscleUpper"
-                  className="input-area"
-                  defaultValue={"DEFAULT"}
-                  onChange={(event) => {
-                    setMuscleUpper(event.target.value);
-                  }}
-                >
-                  <option value="DEFAULT" hidden>
-                    Choose Focus Upper Muscle
-                  </option>
-                  <option value="Biceps" className="select-option">
-                    Biceps
-                  </option>
-                  <option value="Chest" className="select-option">
-                    Chest
-                  </option>
-                  <option value="Forearms" className="select-option">
-                    Forearms
-                  </option>
-                  <option value="Lats" className="select-option">
-                    Lats
-                  </option>
-                  <option value="Triceps" className="select-option">
-                    Triceps
-                  </option>
-                </select>
-                <select
-                  id="muscleLower"
-                  name="muscleLower"
-                  className="input-area"
-                  defaultValue={"DEFAULT"}
-                  onChange={(event) => {
-                    setMuscleUpper(event.target.value);
-                  }}
-                >
-                  <option value="DEFAULT" hidden>
-                    Choose Focus Lower Muscle
-                  </option>
-                  <option value="Abdominals" className="select-option">
-                    Abdominals
-                  </option>
-                  <option value="Calves" className="select-option">
-                    Calves
-                  </option>
-                  <option value="Glutes" className="select-option">
-                    Glutes
-                  </option>
-                  <option value="Hamstrings" className="select-option">
-                    Hamstrings
-                  </option>
-                  <option value="Quadriceps" className="select-option">
-                    Quadriceps
-                  </option>
-                </select>
-                <select
-                  id="difficulty"
-                  name="difficulty"
-                  className="input-area"
-                  defaultValue={"DEFAULT"}
-                  onChange={(event) => {
-                    setDifficulty(event.target.value);
-                  }}
-                >
-                  <option value="DEFAULT" hidden>
-                    Choose Difficulty
-                  </option>
-                  <option value="Beginner" className="select-option">
-                    Beginner
-                  </option>
-                  <option value="Intermediate" className="select-option">
-                    Intermediate
-                  </option>
-                  <option value="Expert" className="select-option">
-                    Expert
-                  </option>
-                </select>
                 {exerciseSug === "No" ? (
                   <button
                     className="form-submit"
