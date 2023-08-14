@@ -7,9 +7,10 @@
 html,
 body {
   font-size: 16px;
-  background-color: #f8dedd;
+  background-color: #2d1616;
   box-sizing: border-box;
   margin-left: 0px;
+  margin-right: 0px;
 }
 
 .main-container {
@@ -21,6 +22,74 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 50px;
+}
+
+.special-paragraph {
+  padding: 50px;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+}
+
+#jart-btn {
+  cursor: pointer;
+  background-color: gray;
+  color: black;
+  border-radius: 9px;
+  padding: 4px;
+  font-size: 3rem;
+  transition: color 0.3s ease-in-out;
+}
+
+#jart-btn:hover {
+  color: white;
+}
+
+#jart-btn:active {
+  background-color: rgb(72, 72, 72);
+  padding: 3px;
+}
+
+.dropzone-file {
+  display: flex;
+  padding: 12px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  width: full;
+  border-width: 2px;
+  border-color: gray;
+  border-style: dashed;
+  border-radius: 9px;
+  margin: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#hidden {
+  padding: 12px;
+  width: full;
+}
+
+.dropzone-file:hover {
+  background-color: rgb(175, 175, 175);
+}
+
+.title-jart {
+  font-size: 9rem;
+  padding: 30px;
+  margin: 0px;
+  text-align: center;
+}
+
+#uploaded-image {
+  padding: 10px;
+  background-color: #9b9ece;
+  border-radius: 9px;
+}
+
+#flex-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
 }
 
 .meal-container {

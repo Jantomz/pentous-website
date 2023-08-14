@@ -10,6 +10,9 @@ export default function Navbar() {
         <Link href="/pentous-planner">
           <button className="navbar-btn">Pentous Planner</button>
         </Link>
+        <Link href="/jart">
+          <button className="navbar-btn">Jart</button>
+        </Link>
       </ul>
     </div>
   );

@@ -17,11 +17,24 @@ export default function LandingPage() {
 
       <section>
         <div className="jart">
-          <h2>[JART]</h2>
+          <h2>
+            Meet our machine learning model: <br></br>[JART]
+          </h2>
           <h3>
             <span>J</span>ourney to <span>A</span>ttainable <span>R</span>esults{" "}
             <span>T</span>ogether
           </h3>
+          <p className="special-paragraph">
+            Trained using tensorflow keras, JART is a state of the art machine
+            learning buddy of ours. Using a total of 3 Conv2D layers and 2 Dense
+            layers, this model was trained in very little time. With activation
+            functions of relu and softmax, our categorical machine learning
+            friend JART came about! Using a collected dataset of 3000+ images,
+            categorized into the 4 food categories, JART is now able to figure
+            out what food category you are showing it! This dataset was compiled
+            by Pentous' creators! JART will let you know what food category you
+            are most likely looking at!
+          </p>
         </div>
       </section>
 
@@ -152,14 +165,9 @@ export default function LandingPage() {
         <div className="container-rohan">
           <div className="descriptions">
             <h3>Jaden Zhang</h3>
-            <img
-              src="./images/jadenzhang.png"
-              alt="Not working"
-              className="portrait"
-            />
             <p>
               Hi! I am a 16 year old student, studying computer science and all
-              it is amazing aspects! I enjoy learning front-end and am in the
+              its amazing aspects! I enjoy learning front-end and am in the
               process of learning more. Making such a project really hurt my
               head, especially with my atrocious organization skills. I hope
               that I can make more organized projects in the future!
