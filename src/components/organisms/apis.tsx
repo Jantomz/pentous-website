@@ -1,4 +1,5 @@
 import axios from "axios";
+import { string } from "zod";
 
 export async function exerciseApi(
   muscleUpper: string,
@@ -45,7 +46,8 @@ export async function exerciseApi(
       workout.append("----");
     }
     for (let i = 0; i < lowerLength; i++) {
-      workoutLower.append(responseLower.data[i].name);
+      const text = responseLower.data[i];
+      workoutLower.append(text.name);
       workoutLower.append("----");
     }
     document.body.appendChild(upperBodTitle);
