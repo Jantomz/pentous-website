@@ -83,6 +83,7 @@ export default function BasicCalculator() {
       const genderElem = document.createElement("h3");
       const weightElem = document.createElement("h3");
       const heightElem = document.createElement("h3");
+      const recCategory = document.createElement("h3");
       const fvElem = document.createElement("p");
       const grainElem = document.createElement("p");
       const dairyElem = document.createElement("p");
@@ -94,6 +95,7 @@ export default function BasicCalculator() {
       genderElem.textContent = "Gender: " + gender;
       weightElem.textContent = "Weight (lbs): " + weightlbs;
       heightElem.textContent = "Height (cm): " + heightcm;
+      recCategory.textContent = "Recommended Portions:";
 
       fvElem.textContent =
         SERVINGS_PER_PERSON[index]?.vegetablesAndFruits +
@@ -109,6 +111,7 @@ export default function BasicCalculator() {
       element.appendChild(genderElem);
       element.appendChild(weightElem);
       element.appendChild(heightElem);
+      element.appendChild(recCategory);
       element.appendChild(fvElem);
       element.appendChild(grainElem);
       element.appendChild(dairyElem);
