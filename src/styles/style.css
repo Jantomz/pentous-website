@@ -204,15 +204,14 @@ span {
 
 @media (max-width: 600px) {
   .logo {
-    width: 100%;
-    float: none;
+    width: 30%;
   }
+}
 
-  #showcase {
-    width: 100%;
-    float: none;
-    background-position: center;
-  }
+#showcase {
+  width: 100%;
+  float: none;
+  background-position: center;
 }
 
 @media (max-width: 900px) {

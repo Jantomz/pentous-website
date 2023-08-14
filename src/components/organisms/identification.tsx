@@ -11,7 +11,7 @@ import Placeholder from "../../assets/placeholder.jpg";
 const getMealComposition = (values: number[]): string => {
   const max = Math.max(...values);
   const index = values.indexOf(max);
-  const prefix = `I'm ${(max * 100).toFixed(2)}% sure, That's`;
+  const prefix = `I'm ${(max * 100).toFixed(2)}% sure that's the category of`;
   if (index === 0) return `${prefix} Dairy.`;
   if (index === 1) return `${prefix} Fruits and Vegetables`;
   if (index === 2) return `${prefix} Grains.`;
@@ -26,7 +26,7 @@ const Identification = (): JSX.Element => {
     "Please Upload an Image!"
   );
 
-  const identifyTumor = async (): Promise<void> => {
+  const identifyMeal = async (): Promise<void> => {
     if (!image) {
       alert("Please upload an image.");
       return;
@@ -71,7 +71,7 @@ const Identification = (): JSX.Element => {
   };
   return (
     <section className="jart-main-container">
-      <h1 className="title-jart">Jart</h1>
+      <h1 className="title-jart">JART</h1>
       <div id="flex-row">
         <div>
           <div>
@@ -81,10 +81,9 @@ const Identification = (): JSX.Element => {
               width={400}
               height={400}
               alt="Uploaded Image"
-              className="rounded-lg max-h-96 object-cover"
             />
           </div>
-          <div>
+          <div className="results">
             {classification === "Classifying..." ? (
               <span className=" animate-ping">Loading</span>
             ) : (
@@ -101,11 +100,11 @@ const Identification = (): JSX.Element => {
           >
             <div>
               <HiOutlineCloudUpload />
-              <p>
-                <span>Click or Drag&nbsp;</span>
+              <p className="black-text">
+                <span className="black-text">Click or Drag&nbsp;</span>
                 To Upload
               </p>
-              <p>PNG or JPG</p>
+              <p className="black-text">PNG or JPG</p>
             </div>
             <input
               id="hidden"
@@ -115,7 +114,7 @@ const Identification = (): JSX.Element => {
             />
           </label>
           <div>
-            <Button onClick={identifyTumor}>Submit</Button>
+            <Button onClick={identifyMeal}>Submit</Button>
           </div>
         </div>
       </div>

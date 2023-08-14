@@ -30,11 +30,18 @@ body {
   font-size: 1.2rem;
 }
 
+.results {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: white;
+}
+
 #jart-btn {
   cursor: pointer;
   background-color: gray;
   color: black;
   border-radius: 9px;
+  text-align: center;
   padding: 4px;
   font-size: 3rem;
   transition: color 0.3s ease-in-out;
@@ -62,6 +69,11 @@ body {
   border-radius: 9px;
   margin: 10px;
   transition: background-color 0.3s ease-in-out;
+  color: black;
+}
+
+.black-text {
+  color: black;
 }
 
 #hidden {
@@ -78,6 +90,7 @@ body {
   padding: 30px;
   margin: 0px;
   text-align: center;
+  color: white;
 }
 
 #uploaded-image {
@@ -262,4 +275,59 @@ input[type="number"] {
   font-size: 2rem;
   width: 100%;
   text-align: center;
+  color: white;
+}
+
+@media only screen and (max-width: 500px) {
+  .special-paragraph {
+    font-size: 1rem;
+  }
+  input {
+    font-size: 0.4rem;
+  }
+  .big-title {
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .image-container img {
+    display: none;
+  }
+
+  .container {
+    width: 80%;
+  }
+
+  .meal-img {
+    display: none;
+  }
+  .document-card {
+    width: 90%;
+  }
+  #uploaded-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .dropzone-file {
+    padding: 0px;
+  }
+  .jart-btn {
+    padding: 0px;
+  }
+  .title-jart {
+    font-size: 4rem;
+  }
+  #uploaded-image {
+    margin: 20px;
+  }
+
+  #flex-row {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

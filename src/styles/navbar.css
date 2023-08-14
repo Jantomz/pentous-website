@@ -6,16 +6,56 @@
   font-weight: 600;
   font-size: 2rem;
   cursor: pointer;
-  color: black;
+  color: rgb(44, 132, 44);
   transition: color 0.2s ease-in-out;
+}
+
+ul {
+  padding: 0px;
 }
 
 .navbar-btn:hover {
   color: #c3c49e;
 }
 
+.navbar-btn:active {
+  color: #feffda;
+}
+
 .navbar {
   display: flex;
   margin: 0;
   padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 700px) {
+  .navbar-btn {
+    font-size: 1.6rem;
+    padding: 20px;
+  }
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .navbar-btn {
+    font-size: 1rem;
+    padding: 20px;
+    margin: 0px;
+  }
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .infobar p,
+  .infobar2 p,
+  .descriptions p {
+    font-size: 10px;
+  }
 }

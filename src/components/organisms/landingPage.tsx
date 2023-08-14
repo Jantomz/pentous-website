@@ -8,10 +8,10 @@ export default function LandingPage() {
 
         <section id="showcase">
           <img src="/pentous-logo.png" alt="Pentous Logo" className="logo" />
-
           <div className="container-rohan">
             <h1>Pentous</h1>
           </div>
+          <h3>For RecessHacks 2023</h3>
         </section>
       </div>
 
@@ -32,8 +32,13 @@ export default function LandingPage() {
             friend JART came about! Using a collected dataset of 3000+ images,
             categorized into the 4 food categories, JART is now able to figure
             out what food category you are showing it! This dataset was compiled
-            by Pentous`&apos` creators! JART will let you know what food
-            category you are most likely looking at!
+            by Pentous creators! JART will let you know what food category you
+            are most likely looking at!
+          </p>
+          <p className="special-paragraph">
+            We also have our Pentous Planner! It will create a comprehensive
+            profile to help your health! Once you make your profile, it will
+            follow you around, so you can use it to check out JART!
           </p>
         </div>
       </section>
