@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 
 // var muscle = "biceps";
 // const options = {
@@ -143,32 +143,33 @@ const SERVINGS_PER_PERSON = [
   },
 ];
 
-export default function healthOverview(age: any, gender: any) {
+export default function healthOverview(age: string, gender: string): number {
+  const ageAsNumber = +age;
   let index = 12;
 
-  if (age < 4) {
+  if (ageAsNumber < 4) {
     index = 0;
-  } else if (age < 9) {
+  } else if (ageAsNumber < 9) {
     index = 1;
-  } else if (age < 14) {
+  } else if (ageAsNumber < 14) {
     index = 2;
-  } else if (age < 19 && gender === "Female") {
+  } else if (ageAsNumber < 19 && gender === "Female") {
     index = 3;
-  } else if (age < 19 && gender === "Male") {
+  } else if (ageAsNumber < 19 && gender === "Male") {
     index = 4;
-  } else if (age < 51 && gender === "Female") {
+  } else if (ageAsNumber < 51 && gender === "Female") {
     index = 5;
-  } else if (age < 51 && gender === "Male") {
+  } else if (ageAsNumber < 51 && gender === "Male") {
     index = 6;
-  } else if (age < 120 && gender === "Female") {
+  } else if (ageAsNumber < 120 && gender === "Female") {
     index = 7;
-  } else if (age < 120 && gender === "Male") {
+  } else if (ageAsNumber < 120 && gender === "Male") {
     index = 8;
-  } else if (age < 120 && gender === "Other") {
+  } else if (ageAsNumber < 120 && gender === "Other") {
     index = 9;
-  } else if (age < 51 && gender === "Other") {
+  } else if (ageAsNumber < 51 && gender === "Other") {
     index = 10;
-  } else if (age < 19 && gender === "Other") {
+  } else if (ageAsNumber < 19 && gender === "Other") {
     index = 11;
   } else {
     index = 12;

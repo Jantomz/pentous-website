@@ -1,5 +1,5 @@
 import { useState } from "react";
-import healthOverview from "../organisms/healthOverview";
+import healthOverview from "./healthOverview";
 import { SERVINGS_PER_PERSON } from "../../assets/datasets";
 
 export default function BasicCalculator() {
@@ -30,7 +30,7 @@ export default function BasicCalculator() {
     exerciseSugAdd();
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.MouseEvent<HTMLElement>): void => {
     event.preventDefault();
 
     if (age === "" || gender === "") {
@@ -108,7 +108,7 @@ export default function BasicCalculator() {
       </div>
       <div className="container">
         <h2>Pentous Planner</h2>
-        <form onSubmit={handleSubmit}>
+        <form>
           <select
             id="gender"
             name="gender"
