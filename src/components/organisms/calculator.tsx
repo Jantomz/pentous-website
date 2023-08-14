@@ -119,19 +119,19 @@ export default function BasicCalculator() {
       element.setAttribute("id", "health-overview");
       document.getElementById("health-overview")?.remove();
 
-      // if (exerciseSug === "Yes") {
-      //   try {
-      //     void exerciseApi(
-      //       muscleUpper,
-      //       muscleLower,
-      //       exerciseLength,
-      //       difficulty,
-      //       exerciseType
-      //     );
-      //   } catch {
-      //     console.error(404);
-      //   }
-      // }
+      if (exerciseSug === "Yes") {
+        try {
+          void exerciseApi(
+            muscleUpper,
+            muscleLower,
+            exerciseLength,
+            difficulty,
+            exerciseType
+          );
+        } catch {
+          console.error(404);
+        }
+      }
 
       if (mealSug === "Yes") {
         const specifiedSearch =
