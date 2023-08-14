@@ -5,6 +5,8 @@ import { number } from "zod";
 import axios from "axios";
 import { exerciseApi } from "./apis";
 
+import { mealApi } from "./apis";
+
 export default function BasicCalculator() {
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
@@ -65,7 +67,7 @@ export default function BasicCalculator() {
         muscleUpper == "DEFAULT" ||
         muscleLower == "DEFAULT" ||
         difficulty == "DEFAULT" ||
-        +exerciseLength > 20) &&
+        +exerciseLength > 10) &&
       exerciseSug == "Yes"
     ) {
       alert("You haven't filled in all the exercise parameters correctly");
@@ -116,26 +118,17 @@ export default function BasicCalculator() {
 
       if (exerciseSug === "Yes") {
         try {
-          void exerciseApi(muscleUpper);
+          void exerciseApi(muscleUpper, muscleLower, exerciseLength);
         } catch {
           console.error(404);
         }
       }
 
       // if (mealSug === "Yes") {
-      //   let specifiedSearch = "";
-      //   const foodOptions = {
-      //     method: "GET",
-      //     url: "https://api.spoonacular.com/recipes/complexSearch",
-      //     headers: {
-      //       "X-Api-Key": "d1823bda9b7848ec8a70344ea908a0bf",
-      //     },
-      //   };
       //   try {
-      //     const response = await axios.request(foodOptions);
-      //     console.log(response.data);
-      //   } catch (error) {
-      //     console.error(error);
+      //     void mealApi(specifiedSearch);
+      //   } catch {
+      //     console.error(404);
       //   }
       // }
 
@@ -388,10 +381,10 @@ export default function BasicCalculator() {
                   name="exerciseLength"
                   type="number"
                   min="0"
-                  max="20"
+                  max="10"
                   step="1"
                   className="input-area"
-                  placeholder="Number of Exercises (Max: 20)"
+                  placeholder="Number of Exercises (Max: 10)"
                   value={exerciseLength}
                   onChange={(event) => {
                     setExerciseLength(event.target.value);
