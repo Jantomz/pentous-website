@@ -32,8 +32,8 @@ export default function LandingPage() {
             friend JART came about! Using a collected dataset of 3000+ images,
             categorized into the 4 food categories, JART is now able to figure
             out what food category you are showing it! This dataset was compiled
-            by Pentous' creators! JART will let you know what food category you
-            are most likely looking at!
+            by Pentous`&apos` creators! JART will let you know what food
+            category you are most likely looking at!
           </p>
         </div>
       </section>
