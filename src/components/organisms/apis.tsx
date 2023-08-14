@@ -39,6 +39,13 @@ export async function exerciseApi(
     oldWorkouts[0]?.remove();
     const oldWorkoutTitle = document.getElementsByClassName("workout-title");
     oldWorkoutTitle[0]?.remove();
+    const oldUpperTitle = document.getElementsByClassName("upper-title");
+    oldUpperTitle[0]?.remove();
+    const oldLowerTitle = document.getElementsByClassName("lower-title");
+    oldLowerTitle[0]?.remove();
+    const oldLowerWorkouts = document.getElementsByClassName("workouts-lower");
+    oldLowerWorkouts[0]?.remove();
+
     const upperLength = Math.floor(+exerciseLength / 2);
     const lowerLength = +exerciseLength - upperLength;
     const response = await axios.request(options);
@@ -50,9 +57,12 @@ export async function exerciseApi(
     const workoutLower = document.createElement("p");
     const upperBodTitle = document.createElement("h4");
     upperBodTitle.textContent = "Upper Body";
+    upperBodTitle.setAttribute("class", "upper-title");
     const lowerBodTitle = document.createElement("h4");
+    lowerBodTitle.setAttribute("class", "lower-title");
     lowerBodTitle.textContent = "Lower Body";
     workout.setAttribute("class", "workouts");
+    workoutLower.setAttribute("class", "workouts-lower");
     document.body.appendChild(workoutTitle);
 
     for (let i = 0; i < upperLength; i++) {
